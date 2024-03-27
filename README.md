@@ -38,7 +38,7 @@ To run the project locally, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/portfolio-website.git
+git clone https://github.com/yourusername/portfolio-website-api-integrated.git
 
 # Navigate to the project directory
 cd portfolio-website

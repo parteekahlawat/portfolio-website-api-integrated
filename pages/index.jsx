@@ -86,15 +86,8 @@ const Index = ({ myData }) => {
                       const {platform} = val;
                       if(platform==="Twitter") return(<a target="_blank" rel="nofollow" href={val.image.url}><i aria-hidden="true" className="fab fa-twitter" />
                       </a>)
-                    })}
-                      
-                      {myData.social_handles.map((val)=>{
-                      const {platform} = val;
                       if(platform==="Instagram") return(<a target="_blank" rel="nofollow" href={val.image.url}><i aria-hidden="true" className="fab fa-instagram" />
                       </a>)
-                    })}
-                    {myData.social_handles.map((val)=>{
-                      const {platform} = val;
                       if(platform==="LinkedIn") return(<a target="_blank" rel="nofollow" href={val.image.url}><i aria-hidden="true" className="fab fa-linkedin" />
                       </a>)
                     })}
@@ -118,9 +111,10 @@ const Index = ({ myData }) => {
                 className="slide scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
               >
+              
                 <img
                   decoding="async"
-                  src="assets/images/profile2.png"
+                  src={myData.about.avatar.url}
                   alt="<b>Zoé</b> Miller"
                 />
                 <span className="circle circle-1" />
@@ -145,15 +139,16 @@ const Index = ({ myData }) => {
                 <div className="info-list">
                   <ul>
                     <li>
+                      
                       <span className="num">
-                        12 <strong>+</strong>
+                      {myData.about.exp_year} <strong>+</strong>
                       </span>
                       <span className="value">
                         Years of <strong>Experience</strong>
                       </span>
                     </li>
                     <li>
-                      <span className="num">330</span>
+                      <span className="num">{myData.about.some_total}</span>
                       <span className="value">
                         Completed <strong>Projects</strong>
                       </span>
@@ -163,7 +158,7 @@ const Index = ({ myData }) => {
               </div>
             </div>
             <div className="lui-bgtitle">
-              <span> Web Developer </span>
+              <span> {myData.about.title} </span>
             </div>
           </div>
         </div>
@@ -205,26 +200,28 @@ const Index = ({ myData }) => {
               className="swiper-container js-services scrolla-element-anim-1 scroll-animate"
               data-animate="active"
             >
-              <SwiperSlide className="swiper-slide">
+              {
+                myData.services.map((val)=>{
+                  const {name, charge, desc, enabled} = val;
+                  return {enabled}&&(
+                    <SwiperSlide className="swiper-slide">
                 <div className="services-item">
                   <div className="lui-subtitle">
-                    <span> Web Development </span>
+                    <span> {name} </span>
                   </div>
                   <div className="icon" />
                   <h5 className="lui-title">
-                    <span> Web Design &amp; Logo </span>
+                    <span> {name} </span>
                   </h5>
                   <div className="lui-text">
                     <div>
                       {" "}
-                      Web designers craft the overall vision &amp; plan for a
-                      website layout. Professional logo development: Business,
-                      Company, or Personal.{" "}
+                      {desc}{" "}
                     </div>
                   </div>
                   <a href="#pricing-section" className="lnk">
                     {" "}
-                    See Pricing{" "}
+                    {charge}{" "}
                   </a>
                   <div
                     className="image"
@@ -234,123 +231,9 @@ const Index = ({ myData }) => {
                   />
                 </div>
               </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="services-item">
-                  <div className="lui-subtitle">
-                    <span> Apps Development </span>
-                  </div>
-                  <div className="icon" />
-                  <h5 className="lui-title">
-                    <span> iOS &amp; Android </span>
-                  </h5>
-                  <div className="lui-text">
-                    <div>
-                      <p>
-                        Design Software applications to run on mobile devices.
-                        Modern and mobile-ready application that will help you
-                        reach all of your marketing.
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#pricing-section" className="lnk">
-                    {" "}
-                    See Pricing{" "}
-                  </a>
-                  <div
-                    className="image"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="services-item">
-                  <div className="lui-subtitle">
-                    <span> Game Development </span>
-                  </div>
-                  <div className="icon" />
-                  <h5 className="lui-title">
-                    <span> Unity &amp; Unreal Engine </span>
-                  </h5>
-                  <div className="lui-text">
-                    <div>
-                      {" "}
-                      Creating games &amp; describes the design, development and
-                      release of a game. Developing unique mobile android and
-                      ios games.{" "}
-                    </div>
-                  </div>
-                  <a href="#pricing-section" className="lnk">
-                    {" "}
-                    See Pricing{" "}
-                  </a>
-                  <div
-                    className="image"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="services-item">
-                  <div className="lui-subtitle">
-                    <span> Advertising </span>
-                  </div>
-                  <div className="icon" />
-                  <h5 className="lui-title">
-                    <span> Google Ads </span>
-                  </h5>
-                  <div className="lui-text">
-                    <div>
-                      {" "}
-                      Advertising services include: Google search result pages,
-                      gmails, YouTube and other websites participated in Google
-                      Ads program.{" "}
-                    </div>
-                  </div>
-                  <a href="#pricing-section" className="lnk">
-                    {" "}
-                    See Pricing{" "}
-                  </a>
-                  <div
-                    className="image"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="services-item">
-                  <div className="lui-subtitle">
-                    <span> Music Writing </span>
-                  </div>
-                  <div className="icon" />
-                  <h5 className="lui-title">
-                    <span> Sound Track </span>
-                  </h5>
-                  <div className="lui-text">
-                    <div>
-                      <p>
-                        Music copying, writing, creating, transcription and
-                        composition services.
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#pricing-section" className="lnk">
-                    {" "}
-                    See Pricing{" "}
-                  </a>
-                  <div
-                    className="image"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
+                  )
+                })
+              }
               <div className="swiper-pagination" />
             </Swiper>
             <div className="lui-bgtitle">
@@ -388,181 +271,82 @@ const Index = ({ myData }) => {
         {/* Skills */}
         <div className="v-line v-line-left">
           <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                <div className="skills-items">
-                  <div
-                    className="skills-item scrolla-element-anim-1 scroll-animate"
-                    data-animate="active"
-                  >
-                    <h6 className="name">
-                      <span> PHP </span>
-                    </h6>
-                    <div className="text">
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
-                        </p>
+          <div className="row">
+            {
+              myData.skills.map((val, index)=>{
+                const {name, sequence, percentage} = val;
+                const nextVal = index < myData.skills.length - 1 ? myData.skills[index + 1] : null;
+                const {name: name1, percentage: per1} = nextVal||{};
+                if(index%2==0){
+                  return(
+                    
+                  <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                  <div className="skills-items">
+                    <div
+                      className="skills-item scrolla-element-anim-1 scroll-animate"
+                      data-animate="active"
+                    >
+                      <h6 className="name">
+                        <span> {name} </span>
+                      </h6>
+                      <div className="text">
+                        <div>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="dots">
+                        <div className="dot" style={{ width: "85%" }}>
+                          <span />
+                        </div>
+                      </div>
+                      <div className="value">
+                        <span className="num">
+                          {percentage}<span>%</span>
+                        </span>
                       </div>
                     </div>
-                    <div className="dots">
-                      <div className="dot" style={{ width: "85%" }}>
-                        <span />
+                    <div
+                      className="skills-item scrolla-element-anim-1 scroll-animate"
+                      data-animate="active"
+                    >
+                      <h6 className="name">
+                        <span> {name1} </span>
+                      </h6>
+                      <div className="text">
+                        <div>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="value">
-                      <span className="num">
-                        85 <span>%</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="skills-item scrolla-element-anim-1 scroll-animate"
-                    data-animate="active"
-                  >
-                    <h6 className="name">
-                      <span> Python </span>
-                    </h6>
-                    <div className="text">
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
-                        </p>
+                      <div className="dots">
+                        <div className="dot" style={{ width: "75%" }}>
+                          <span />
+                        </div>
                       </div>
-                    </div>
-                    <div className="dots">
-                      <div className="dot" style={{ width: "75%" }}>
-                        <span />
+                      <div className="value">
+                        <span className="num">
+                          {per1} <span>%</span>
+                        </span>
                       </div>
-                    </div>
-                    <div className="value">
-                      <span className="num">
-                        75 <span>%</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                <div className="skills-items">
-                  <div
-                    className="skills-item scrolla-element-anim-1 scroll-animate"
-                    data-animate="active"
-                  >
-                    <h6 className="name">
-                      <span> JavaScript </span>
-                    </h6>
-                    <div className="text">
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="dots">
-                      <div className="dot" style={{ width: "75%" }}>
-                        <span />
-                      </div>
-                    </div>
-                    <div className="value">
-                      <span className="num">
-                        75 <span>%</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="skills-item scrolla-element-anim-1 scroll-animate"
-                    data-animate="active"
-                  >
-                    <h6 className="name">
-                      <span> React </span>
-                    </h6>
-                    <div className="text">
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="dots">
-                      <div className="dot" style={{ width: "70%" }}>
-                        <span />
-                      </div>
-                    </div>
-                    <div className="value">
-                      <span className="num">
-                        70 <span>%</span>
-                      </span>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                <div className="skills-items">
-                  <div
-                    className="skills-item scrolla-element-anim-1 scroll-animate"
-                    data-animate="active"
-                  >
-                    <h6 className="name">
-                      <span> WordPress </span>
-                    </h6>
-                    <div className="text">
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="dots">
-                      <div className="dot" style={{ width: "90%" }}>
-                        <span />
-                      </div>
-                    </div>
-                    <div className="value">
-                      <span className="num">
-                        90 <span>%</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="skills-item scrolla-element-anim-1 scroll-animate"
-                    data-animate="active"
-                  >
-                    <h6 className="name">
-                      <span> Adobe XD </span>
-                    </h6>
-                    <div className="text">
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="dots">
-                      <div className="dot" style={{ width: "80%" }}>
-                        <span />
-                      </div>
-                    </div>
-                    <div className="value">
-                      <span className="num">
-                        80 <span>%</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                      
+                  )
+                }
+                else {
+                  return 
+                }
+                
+              })
+            }
             </div>
             <div className="lui-bgtitle">
               <span> Skills </span>
@@ -647,12 +431,16 @@ const Index = ({ myData }) => {
               className="swiper-container js-testimonials scrolla-element-anim-1 scroll-animate"
               data-animate="active"
             >
-              <SwiperSlide className="swiper-slide">
+              {
+                myData.testimonials.map((val)=>{
+                  const {name, review, image} = val;
+                  return (
+                    <SwiperSlide className="swiper-slide">
                 <div className="testimonials-item">
                   <div className="image">
                     <img
                       decoding="async"
-                      src="assets/images/testi4-2.jpg"
+                      src={image.url}
                       alt="Barbara Wilson"
                     />
                     <div className="icon">
@@ -675,15 +463,13 @@ const Index = ({ myData }) => {
                   <div className="text lui-text">
                     <div>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
+                        {review}
                       </p>
                     </div>
                   </div>
                   <div className="info">
                     <h6 className="name">
-                      <span>Barbara Wilson</span>
+                      <span>{name}</span>
                     </h6>
                     <div className="author">
                       <span>CEO Company</span>
@@ -697,206 +483,9 @@ const Index = ({ myData }) => {
                   />
                 </div>
               </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
-                  <div className="image">
-                    <img
-                      decoding="async"
-                      src="assets/images/testi4-1.jpg"
-                      alt="Charlie Smith"
-                    />
-                    <div className="icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                        width="44px"
-                        height="34px"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          strokeWidth="2px"
-                          stroke="rgb(0, 0, 0)"
-                          fill="rgb(41, 165, 135)"
-                          d="M17.360,8.325 C15.490,5.563 11.616,4.762 8.705,6.536 C6.901,7.635 5.815,9.533 5.826,11.567 C5.828,14.854 8.637,17.516 12.101,17.515 C13.290,17.513 14.456,17.192 15.460,16.587 C14.967,17.975 14.049,19.457 12.537,20.942 C11.934,21.533 11.951,22.476 12.574,23.048 C13.198,23.619 14.192,23.604 14.794,23.012 C20.384,17.515 19.658,11.539 17.360,8.333 L17.360,8.325 ZM32.407,8.325 C30.538,5.563 26.663,4.762 23.752,6.536 C21.949,7.635 20.863,9.533 20.873,11.567 C20.875,14.854 23.685,17.516 27.148,17.515 C28.338,17.513 29.503,17.192 30.508,16.587 C30.015,17.975 29.097,19.457 27.585,20.942 C26.982,21.533 26.999,22.476 27.622,23.048 C28.245,23.619 29.239,23.604 29.842,23.012 C35.432,17.515 34.706,11.539 32.407,8.333 L32.407,8.325 Z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="text lui-text">
-                    <div>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="info">
-                    <h6 className="name">
-                      <span>Charlie Smith</span>
-                    </h6>
-                    <div className="author">
-                      <span>Designer</span>
-                    </div>
-                  </div>
-                  <div
-                    className="bg-img"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
-                  <div className="image">
-                    <img
-                      decoding="async"
-                      src="assets/images/testi4-4.jpg"
-                      alt="Roy Wang"
-                    />
-                    <div className="icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                        width="44px"
-                        height="34px"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          strokeWidth="2px"
-                          stroke="rgb(0, 0, 0)"
-                          fill="rgb(41, 165, 135)"
-                          d="M17.360,8.325 C15.490,5.563 11.616,4.762 8.705,6.536 C6.901,7.635 5.815,9.533 5.826,11.567 C5.828,14.854 8.637,17.516 12.101,17.515 C13.290,17.513 14.456,17.192 15.460,16.587 C14.967,17.975 14.049,19.457 12.537,20.942 C11.934,21.533 11.951,22.476 12.574,23.048 C13.198,23.619 14.192,23.604 14.794,23.012 C20.384,17.515 19.658,11.539 17.360,8.333 L17.360,8.325 ZM32.407,8.325 C30.538,5.563 26.663,4.762 23.752,6.536 C21.949,7.635 20.863,9.533 20.873,11.567 C20.875,14.854 23.685,17.516 27.148,17.515 C28.338,17.513 29.503,17.192 30.508,16.587 C30.015,17.975 29.097,19.457 27.585,20.942 C26.982,21.533 26.999,22.476 27.622,23.048 C28.245,23.619 29.239,23.604 29.842,23.012 C35.432,17.515 34.706,11.539 32.407,8.333 L32.407,8.325 Z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="text lui-text">
-                    <div>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="info">
-                    <h6 className="name">
-                      <span>Roy Wang</span>
-                    </h6>
-                    <div className="author">
-                      <span>Manager GYM</span>
-                    </div>
-                  </div>
-                  <div
-                    className="bg-img"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
-                  <div className="image">
-                    <img
-                      decoding="async"
-                      src="assets/images/testi4-3.jpg"
-                      alt="Jennifer Smith"
-                    />
-                    <div className="icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                        width="44px"
-                        height="34px"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          strokeWidth="2px"
-                          stroke="rgb(0, 0, 0)"
-                          fill="rgb(41, 165, 135)"
-                          d="M17.360,8.325 C15.490,5.563 11.616,4.762 8.705,6.536 C6.901,7.635 5.815,9.533 5.826,11.567 C5.828,14.854 8.637,17.516 12.101,17.515 C13.290,17.513 14.456,17.192 15.460,16.587 C14.967,17.975 14.049,19.457 12.537,20.942 C11.934,21.533 11.951,22.476 12.574,23.048 C13.198,23.619 14.192,23.604 14.794,23.012 C20.384,17.515 19.658,11.539 17.360,8.333 L17.360,8.325 ZM32.407,8.325 C30.538,5.563 26.663,4.762 23.752,6.536 C21.949,7.635 20.863,9.533 20.873,11.567 C20.875,14.854 23.685,17.516 27.148,17.515 C28.338,17.513 29.503,17.192 30.508,16.587 C30.015,17.975 29.097,19.457 27.585,20.942 C26.982,21.533 26.999,22.476 27.622,23.048 C28.245,23.619 29.239,23.604 29.842,23.012 C35.432,17.515 34.706,11.539 32.407,8.333 L32.407,8.325 Z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="text lui-text">
-                    <div>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="info">
-                    <h6 className="name">
-                      <span>Jennifer Smith</span>
-                    </h6>
-                    <div className="author">
-                      <span>CEO &amp; Founder</span>
-                    </div>
-                  </div>
-                  <div
-                    className="bg-img"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
-                  <div className="image">
-                    <img
-                      decoding="async"
-                      src="assets/images/testi4-5.jpg"
-                      alt="Paul Freeman"
-                    />
-                    <div className="icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                        width="44px"
-                        height="34px"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          strokeWidth="2px"
-                          stroke="rgb(0, 0, 0)"
-                          fill="rgb(41, 165, 135)"
-                          d="M17.360,8.325 C15.490,5.563 11.616,4.762 8.705,6.536 C6.901,7.635 5.815,9.533 5.826,11.567 C5.828,14.854 8.637,17.516 12.101,17.515 C13.290,17.513 14.456,17.192 15.460,16.587 C14.967,17.975 14.049,19.457 12.537,20.942 C11.934,21.533 11.951,22.476 12.574,23.048 C13.198,23.619 14.192,23.604 14.794,23.012 C20.384,17.515 19.658,11.539 17.360,8.333 L17.360,8.325 ZM32.407,8.325 C30.538,5.563 26.663,4.762 23.752,6.536 C21.949,7.635 20.863,9.533 20.873,11.567 C20.875,14.854 23.685,17.516 27.148,17.515 C28.338,17.513 29.503,17.192 30.508,16.587 C30.015,17.975 29.097,19.457 27.585,20.942 C26.982,21.533 26.999,22.476 27.622,23.048 C28.245,23.619 29.239,23.604 29.842,23.012 C35.432,17.515 34.706,11.539 32.407,8.333 L32.407,8.325 Z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="text lui-text">
-                    <div>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="info">
-                    <h6 className="name">
-                      <span>Paul Freeman</span>
-                    </h6>
-                    <div className="author">
-                      <span>Photographer</span>
-                    </div>
-                  </div>
-                  <div
-                    className="bg-img"
-                    style={{
-                      backgroundImage: "url(assets/images/pat-2.png)",
-                    }}
-                  />
-                </div>
-              </SwiperSlide>
+                  )
+                })
+              }
               <div className="swiper-pagination" />
             </Swiper>
             <div className="lui-bgtitle">

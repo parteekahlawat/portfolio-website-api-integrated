@@ -4,8 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Resume from "../src/components/Resume";
 import Layout from "../src/layouts/Layout";
 import axios from "axios";
-import { InferGetStaticPropsType, GetStaticProps } from "next";
-import { useEffect, useState } from "react";
 import {
   servicesSliderProps,
   testimonialsSliderProps,

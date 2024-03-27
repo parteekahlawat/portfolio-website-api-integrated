@@ -4,11 +4,5 @@
     "files": [
       "static/chunks/src_components_PortfolioIsotope_js.js"
     ]
-  },
-  "work-single.jsx -> ../src/components/WorkSingleISotope": {
-    "id": "work-single.jsx -> ../src/components/WorkSingleISotope",
-    "files": [
-      "static/chunks/src_components_WorkSingleISotope_js.js"
-    ]
   }
 }

@@ -41,7 +41,7 @@ To run the project locally, follow these steps:
 git clone https://github.com/yourusername/portfolio-website-api-integrated.git
 
 # Navigate to the project directory
-cd portfolio-website
+cd portfolio-website-api-integrated
 
 # Install dependencies
 npm install

@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Resume from "../src/components/Resume";
 import Layout from "../src/layouts/Layout";
+import axios from "axios";
+import { InferGetStaticPropsType, GetStaticProps } from "next";
+import { useEffect, useState } from "react";
 import {
   servicesSliderProps,
   testimonialsSliderProps,
@@ -13,7 +16,22 @@ const PortfolioIsotope = dynamic(
     ssr: false,
   }
 );
-const Index = () => {
+
+export async function getStaticProps() {
+  // Fetch data directly using axios
+  const res = await axios.get(
+    "https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae"
+  );
+  const userData = res.data;
+  const { user } = userData;
+  return {
+    props: {
+      myData: user,
+    },
+  };
+}
+
+const Index = ({ myData }) => {
   return (
     <Layout pageClassName={"home"}>
       {/* Section - Hero Started */}
@@ -41,33 +59,45 @@ const Index = () => {
                     data-splitting="chars"
                     data-animate="active"
                   >
-                    <span>
-                      <b>Zoé</b> Miller{" "}
-                    </span>
+                    {myData && (
+                      <span key={myData._id}> 
+                        <b>{myData.about.name.split(" ")[0]}</b> <b>{" "}</b>{myData.about.name.split(" ")[1]}
+                      </span>
+                    )}
                   </h1>
-                  <div className="label lui-subtitle">
+                  {<div className="label lui-subtitle">
                     {" "}
-                    I am <strong>Web Developer</strong>
+                    I am <strong>{myData.about.title}</strong>
                   </div>
+                  }
+                  
                 </div>
                 <div className="description">
-                  <div>
+                  {
+                    <div>
                     <p>
-                      From France, Paris. I have rich experience in web design,
-                      also I am good at wordpress. I love to talk with you about
-                      our unique.
+                      {myData.about.description}
                     </p>
                   </div>
+                  }
+                  
                   <div className="social-links">
-                    <a target="_blank" rel="nofollow" href="#">
-                      <i aria-hidden="true" className="fab fa-twitter" />
-                    </a>
-                    <a target="_blank" rel="nofollow" href="#">
-                      <i aria-hidden="true" className="fab fa-dribbble" />
-                    </a>
-                    <a target="_blank" rel="nofollow" href="#">
-                      <i aria-hidden="true" className="fab fa-behance" />
-                    </a>
+                    {myData.social_handles.map((val)=>{
+                      const {platform} = val;
+                      if(platform==="Twitter") return(<a target="_blank" rel="nofollow" href={val.image.url}><i aria-hidden="true" className="fab fa-twitter" />
+                      </a>)
+                    })}
+                      
+                      {myData.social_handles.map((val)=>{
+                      const {platform} = val;
+                      if(platform==="Instagram") return(<a target="_blank" rel="nofollow" href={val.image.url}><i aria-hidden="true" className="fab fa-instagram" />
+                      </a>)
+                    })}
+                    {myData.social_handles.map((val)=>{
+                      const {platform} = val;
+                      if(platform==="LinkedIn") return(<a target="_blank" rel="nofollow" href={val.image.url}><i aria-hidden="true" className="fab fa-linkedin" />
+                      </a>)
+                    })}
                   </div>
                 </div>
                 <div className="bts">
@@ -94,7 +124,7 @@ const Index = () => {
                   alt="<b>Zoé</b> Miller"
                 />
                 <span className="circle circle-1" />
-                <span 
+                <span
                   className="circle img-1"
                   style={{
                     backgroundImage: "url(assets/images/pat-1.png)",
